@@ -27,16 +27,29 @@
       </span>
       Tendril
     </a>
-    <div class="phases" role="group" aria-label="Project phase">
-      <a class="phase is-current" href="/" aria-current="page">Build</a>
-      <span class="phase is-locked" aria-disabled="true" title="Starts after the build is finished">Iterate</span>
-      <span class="phase is-locked" aria-disabled="true" title="Starts after the iterate phase">Create</span>
+
+    <div class="tks" title="TKS Focus 1">
+      <span class="tks-logo" aria-hidden="true">
+        <img src="media/tks-logo.svg" alt="">
+        <span class="tks-fallback">TKS</span>
+      </span>
+      <span class="tks-label">TKS<br><span>Focus 1</span></span>
     </div>
+
     <nav>
       <a href="#how">How it works</a>
       <a href="#build">Build log</a>
       <a href="https://github.com/Eben-Siyabalapitiya/TENDRIL">GitHub</a>
     </nav>
+  </div>
+  <div class="phase-bar">
+    <div class="shell">
+      <div class="phases" role="group" aria-label="Project phase">
+        <a class="phase is-current" href="/" aria-current="page">Build</a>
+        <span class="phase is-locked" aria-disabled="true" title="Starts after the build is finished">Iterate</span>
+        <span class="phase is-locked" aria-disabled="true" title="Starts after the iterate phase">Create</span>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -123,26 +136,25 @@
     </div>
   </section>
 
-  <!-- ──────────────────── feature clip: flat pickup ──────────────────── -->
-  <section class="feature" id="flat">
-    <div class="feature-media reveal">
-      <div class="video-frame" data-video>
-        <video playsinline muted loop controls preload="metadata" poster="media/poster-flat.jpg">
-          <source src="media/flat-pickup.mp4" type="video/mp4">
-        </video>
-        <div class="video-fallback">
-          <p>Video goes here</p>
-          <span>drop <code>flat-pickup.mp4</code> into <code>/media</code></span>
-        </div>
-      </div>
-    </div>
+  <!-- ──────────────────── clip: flat pickup ──────────────────── -->
+  <section class="section alt" id="flat">
     <div class="shell">
-      <div class="feature-copy reveal">
+      <header class="section-head reveal">
         <p class="eyebrow"><i>02</i> Flat on the desk</p>
         <h2>The one I was not sure would work</h2>
-        <p>A roll of tape lying flat has almost nothing to hold on to. There is no edge to pinch, so a normal gripper just pushes it around the desk.</p>
-        <p>The arm gets under the edge and closes around it instead, reshaping itself against the desk as it curls. That is the whole reason a soft arm beats a claw here.</p>
-      </div>
+        <p class="sub">A roll of tape lying flat has almost nothing to hold on to. There is no edge to pinch, so a normal gripper just pushes it around the desk. The arm gets under the edge and closes around it instead, reshaping itself against the desk as it curls.</p>
+      </header>
+      <figure class="clip reveal">
+        <div class="video-frame" data-video>
+          <video playsinline muted loop controls preload="metadata" poster="media/poster-flat.jpg">
+            <source src="media/flat-pickup.mp4" type="video/mp4">
+          </video>
+          <div class="video-fallback">
+            <p>Video goes here</p>
+            <span>drop <code>flat-pickup.mp4</code> into <code>/media</code></span>
+          </div>
+        </div>
+      </figure>
     </div>
   </section>
 
@@ -183,7 +195,7 @@
         <li class="reveal">
           <div class="log-text">
             <h3>Rings on the string</h3>
-            <p>Pulling a bare string with your fingers is awkward and you lose track of how far you have gone. So I printed a ring for each end, one for closing and one for opening. A finger in each ring and you can work the arm properly, which made testing way quicker than wiring up a motor every time I changed something.</p>
+            <p>Pulling a bare string with your fingers is awkward and you lose track of how far you have gone. So I printed a ring for each end, one for closing and one for opening. A finger in each ring and you can work the arm properly, which made testing way quicker and means I can feel exactly how hard it is pulling.</p>
           </div>
           <figure class="shot">
             <img src="media/rings.jpg" alt="Two printed rings tied to the ends of the string" loading="lazy">
@@ -197,12 +209,6 @@
           <figure class="shot">
             <img src="media/handle.jpg" alt="The printed handle the arm mounts onto" loading="lazy">
           </figure>
-        </li>
-        <li class="reveal pending">
-          <div class="log-text">
-            <h3>Putting it on a motor</h3>
-            <p>Next up. A servo with a little spool on it should be able to pull the string about as far as my fingers do. The thing I am not sure about is whether the arm springs itself back open properly once a motor is holding the line, or whether it needs an elastic cord running down the middle to help it straighten.</p>
-          </div>
         </li>
       </ol>
     </div>
@@ -231,11 +237,31 @@
     </div>
   </section>
 
+  <!-- ─────────────────────────── next ─────────────────────────── -->
+  <section class="section" id="next">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="eyebrow"><i>05</i> Where it goes</p>
+        <h2>What it is good for,<br>and what is missing</h2>
+      </header>
+      <div class="split">
+        <article class="note reveal">
+          <h3>What a shape like this is good at</h3>
+          <p>Anything awkward. Things that are round, uneven, fragile, or sitting flat with no edge to grab. A claw has to be aimed and sized for the object, and this does not, so one arm covers a whole range of shapes that would otherwise need their own tool. It also spreads its grip over a lot of surface instead of pinching two points, so it holds without crushing.</p>
+        </article>
+        <article class="note reveal">
+          <h3>What it cannot do yet</h3>
+          <p>It only curls in one plane. Left and right work, up and down does not, so there is a whole axis of movement missing and that is the next thing to solve. After that, pulling the string by hand is the limit. Driving it properly instead of by finger is what would turn it from something I demo on a desk into something that could actually sit on the end of an arm.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ─────────────────────────── phases ─────────────────────────── -->
   <section class="section alt" id="phases">
     <div class="shell">
       <header class="section-head reveal">
-        <p class="eyebrow"><i>05</i> Where this is going</p>
+        <p class="eyebrow"><i>06</i> Where this is going</p>
         <h2>Three phases</h2>
         <p class="sub">This page is the first one. The other two get added here as they happen.</p>
       </header>
