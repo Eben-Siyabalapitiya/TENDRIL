@@ -99,10 +99,16 @@
         <p class="reveal">It is tight in the middle and keeps opening out as it goes, and the shape stays the same the whole way, just bigger. So when the arm curls into one, it is making a small loop and a big loop at once, and the object ends up in whichever part of it fits.</p>
       </div>
 
-      <figure class="drawing reveal">
-        <img src="media/diagram.svg" alt="The arm straight as printed, and the same arm curled into a spiral when the string is pulled">
-        <figcaption>Flat as it comes off the printer, and the same arm once the string is pulled. The orange line is the string.</figcaption>
-      </figure>
+      <div class="pair">
+        <figure class="drawing reveal">
+          <img src="media/diagram.svg" alt="The arm straight as printed, and the same arm curled into a spiral when the string is pulled">
+          <figcaption>Drawn flat, and the same arm once the string is pulled. The orange line is the string.</figcaption>
+        </figure>
+        <figure class="photo reveal">
+          <img src="media/arm.jpg" alt="The printed arm laid out flat on a cutting mat, segments getting smaller toward the tip" loading="lazy">
+          <figcaption>And printed. Same taper, same gaps between every segment.</figcaption>
+        </figure>
+      </div>
 
       <div class="split">
         <article class="note reveal">
@@ -155,49 +161,41 @@
             <h3>Two ways of drawing it</h3>
             <p>The first thing I tried was writing a script that builds the arm for you, since the moment you change the curl even a little, every segment changes with it. That worked and it was a good way to understand the shape, but the version that actually got printed is modelled in Onshape. The script stayed as a test and a way to check my numbers.</p>
           </div>
-          <figure class="shot" data-shot="media/log-generator.jpg">
-            <img src="media/log-generator.jpg" alt="The arm being modelled">
-            <span class="shot-ph">photo — <code>media/log-generator.jpg</code></span>
-          </figure>
         </li>
         <li class="reveal">
           <div class="log-text">
             <h3>Getting a hole down the middle</h3>
             <p>The string has to run through the inside of the arm, and it has to sit closer to one edge than the other or the thing will not fold. Lining that channel up through every segment, while each segment is a different size, took a few goes in CAD before it came out straight.</p>
           </div>
-          <figure class="shot" data-shot="media/log-channel.jpg">
-            <img src="media/log-channel.jpg" alt="The channel the string runs through">
-            <span class="shot-ph">photo — <code>media/log-channel.jpg</code></span>
-          </figure>
         </li>
         <li class="reveal">
           <div class="log-text">
             <h3>The first one snapped at the base</h3>
             <p>The first print curled fine for a few pulls and then snapped at the very bottom. Makes sense looking back. The bottom joint is holding the whole arm, so everything you pull ends up loaded onto that one thin piece of plastic, and it had a sharp corner in it, which is exactly where a crack likes to start.</p>
           </div>
-          <figure class="shot" data-shot="media/log-break.jpg">
-            <img src="media/log-break.jpg" alt="The first prototype broken at the base segment">
-            <span class="shot-ph">photo — <code>media/log-break.jpg</code></span>
-          </figure>
         </li>
         <li class="reveal">
           <div class="log-text">
             <h3>Fixing it with a bigger fillet</h3>
             <p>Looked up how other people deal with this and the answer was the same everywhere: never leave a sharp inside corner where the load is. So I rounded out the bottom of every gap instead of letting them come to a point. Same arm, same curl, the stress just has somewhere to spread instead of all landing on one line. The second print has held up.</p>
           </div>
-          <figure class="shot" data-shot="media/log-fillet.jpg">
-            <img src="media/log-fillet.jpg" alt="Close-up of the rounded corner at the bottom of a gap">
-            <span class="shot-ph">photo — <code>media/log-fillet.jpg</code></span>
-          </figure>
         </li>
         <li class="reveal">
           <div class="log-text">
             <h3>Rings on the string</h3>
-            <p>Pulling a bare string with your fingers is awkward and you lose track of how far you have gone. So I tied a ring on each end, one for closing and one for opening. A finger in each ring and you can work the arm properly, which made testing way quicker than wiring up a motor every time I changed something.</p>
+            <p>Pulling a bare string with your fingers is awkward and you lose track of how far you have gone. So I printed a ring for each end, one for closing and one for opening. A finger in each ring and you can work the arm properly, which made testing way quicker than wiring up a motor every time I changed something.</p>
           </div>
-          <figure class="shot" data-shot="media/log-rings.jpg">
-            <img src="media/log-rings.jpg" alt="The two finger rings tied to the string">
-            <span class="shot-ph">photo — <code>media/log-rings.jpg</code></span>
+          <figure class="shot">
+            <img src="media/rings.jpg" alt="Two printed rings tied to the ends of the string" loading="lazy">
+          </figure>
+        </li>
+        <li class="reveal">
+          <div class="log-text">
+            <h3>Something to hold it by</h3>
+            <p>Holding the arm itself while pulling the string does not work. You end up fighting your own grip, and squeezing the segments changes how it curls. So there is a handle the whole thing mounts onto. You hold that, the arm stays free, and both hands are doing one job each instead of three.</p>
+          </div>
+          <figure class="shot">
+            <img src="media/handle.jpg" alt="The printed handle the arm mounts onto" loading="lazy">
           </figure>
         </li>
         <li class="reveal pending">
@@ -205,10 +203,6 @@
             <h3>Putting it on a motor</h3>
             <p>Next up. A servo with a little spool on it should be able to pull the string about as far as my fingers do. The thing I am not sure about is whether the arm springs itself back open properly once a motor is holding the line, or whether it needs an elastic cord running down the middle to help it straighten.</p>
           </div>
-          <figure class="shot" data-shot="media/log-servo.jpg">
-            <img src="media/log-servo.jpg" alt="Servo and spool setup">
-            <span class="shot-ph">photo — <code>media/log-servo.jpg</code></span>
-          </figure>
         </li>
       </ol>
     </div>
@@ -237,27 +231,11 @@
     </div>
   </section>
 
-  <!-- ─────────────────────────── gallery ─────────────────────────── -->
-  <section class="section" id="gallery">
-    <div class="shell">
-      <header class="section-head reveal">
-        <p class="eyebrow"><i>05</i> More from the build</p>
-        <h2>Prints, failures, the rest of it</h2>
-      </header>
-      <div class="gallery">
-        <figure class="shot tall reveal" data-shot="media/gallery-1.jpg"><img src="media/gallery-1.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-1.jpg</code></span></figure>
-        <figure class="shot reveal" data-shot="media/gallery-2.jpg"><img src="media/gallery-2.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-2.jpg</code></span></figure>
-        <figure class="shot reveal" data-shot="media/gallery-3.jpg"><img src="media/gallery-3.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-3.jpg</code></span></figure>
-        <figure class="shot wide reveal" data-shot="media/gallery-4.jpg"><img src="media/gallery-4.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-4.jpg</code></span></figure>
-      </div>
-    </div>
-  </section>
-
   <!-- ─────────────────────────── phases ─────────────────────────── -->
   <section class="section alt" id="phases">
     <div class="shell">
       <header class="section-head reveal">
-        <p class="eyebrow"><i>06</i> Where this is going</p>
+        <p class="eyebrow"><i>05</i> Where this is going</p>
         <h2>Three phases</h2>
         <p class="sub">This page is the first one. The other two get added here as they happen.</p>
       </header>
