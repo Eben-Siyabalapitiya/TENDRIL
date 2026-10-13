@@ -235,10 +235,10 @@ code { font-family: var(--mono); font-size: .86em; }
 /* hero video, wider than the text column */
 .hero-media { margin: clamp(2.5rem, 5vw, 4rem) 0 0; }
 .hero-media .video-frame {
-  width: min(100%, 740px);
+  width: min(100% - 2.5rem, 740px);
   margin-inline: auto; aspect-ratio: 16 / 9;
 }
-.hero-media figcaption { width: min(100%, 740px); margin: 1rem auto 0; color: var(--muted); font-size: .86rem; }
+.hero-media figcaption { width: min(100% - 2.5rem, 740px); margin: 1rem auto 0; color: var(--muted); font-size: .86rem; }
 
 /* ── fact strip ──────────────────────────────────────────────── */
 .facts {
@@ -316,7 +316,7 @@ code { font-family: var(--mono); font-size: .86em; }
 
  /* single clip, sized not stretched */
 .clip { margin: 0; }
-.clip .video-frame { width: min(100%, 700px); margin-inline: auto; aspect-ratio: 16 / 9; }
+.clip .video-frame { width: min(100%, 700px); max-width: 100%; margin-inline: auto; aspect-ratio: 16 / 9; }
 
 /* ── offset clip ─────────────────────────────────────────────── */
 .offset-grid {
@@ -503,4 +503,10 @@ code { font-family: var(--mono); font-size: .86em; }
 @media (prefers-reduced-motion: reduce) {
   .nav, .phase-bar .phases, .hero-media, .facts li { opacity: 1 !important; transform: none !important; transition: none !important; }
   .reveal[data-from] { transform: none; }
+}
+
+/* narrow screens: enter straight up, never sideways */
+@media (max-width: 760px) {
+  .reveal[data-from="left"],
+  .reveal[data-from="right"] { transform: translate3d(0, 20px, 0) scale(.995); }
 }

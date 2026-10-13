@@ -118,7 +118,7 @@ if (logItems.length && railSteps.length && 'IntersectionObserver' in window) {
 
 // ── slow drift on photos as they pass through the viewport ───────
 if (!reduced) {
-  const drifters = [...document.querySelectorAll('.log .shot img, .photo img')];
+  const drifters = [...document.querySelectorAll('.shot img')]; // frames that clip their contents
   let pending = false;
   const drift = () => {
     const h = window.innerHeight;
@@ -182,7 +182,9 @@ if (!reduced) {
       const el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      const top = el.getBoundingClientRect().top + window.scrollY - 90;
+      const header = document.querySelector('.nav');
+      const offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
       if (!smooth) { window.scrollTo({ top, behavior: 'smooth' }); return; }
       target = clamp(top);
       run();
