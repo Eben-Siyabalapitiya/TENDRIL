@@ -94,3 +94,46 @@ document.querySelectorAll('[data-video]').forEach((frame) => {
   if (source) source.addEventListener('error', markEmpty);
   setTimeout(() => { if (!video.videoWidth) markEmpty(); }, 1500);
 });
+
+// ── build log: highlight the step you are reading ────────────────
+const logItems = [...document.querySelectorAll('.log li')];
+const railSteps = [...document.querySelectorAll('.rail-steps li')];
+if (logItems.length && railSteps.length && 'IntersectionObserver' in window) {
+  const mark = (i) => {
+    railSteps.forEach((step, n) => {
+      step.classList.toggle('is-active', n === i);
+      step.classList.toggle('is-done', n < i);
+    });
+  };
+  const seen = new Set();
+  const lo = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      const i = logItems.indexOf(e.target);
+      if (e.isIntersecting) seen.add(i); else seen.delete(i);
+    });
+    if (seen.size) mark(Math.min(...seen));
+  }, { rootMargin: '-35% 0px -45% 0px' });
+  logItems.forEach((li) => lo.observe(li));
+}
+
+// ── slow drift on photos as they pass through the viewport ───────
+if (!reduced) {
+  const drifters = [...document.querySelectorAll('.log .shot img, .photo img')];
+  let pending = false;
+  const drift = () => {
+    const h = window.innerHeight;
+    drifters.forEach((img) => {
+      const r = img.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > h + 200) return;
+      const mid = r.top + r.height / 2;
+      const off = ((mid - h / 2) / h) * -18; // px
+      img.style.transform = `translate3d(0, ${off.toFixed(2)}px, 0) scale(1.08)`;
+    });
+    pending = false;
+  };
+  addEventListener('scroll', () => {
+    if (!pending) { pending = true; requestAnimationFrame(drift); }
+  }, { passive: true });
+  addEventListener('resize', drift, { passive: true });
+  drift();
+}
