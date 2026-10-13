@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#111110">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -34,129 +34,121 @@
     </div>
     <nav>
       <a href="#how">How it works</a>
-      <a href="#videos">Videos</a>
       <a href="#build">Build log</a>
+      <a href="https://github.com/Eben-Siyabalapitiya/TENDRIL">GitHub</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
+  <!-- ─────────────────────────── hero ─────────────────────────── -->
   <section class="hero" id="top">
-    <div class="shell hero-grid">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Built by Eben Siyabalapitiya</p>
-        <h1>One string.<br>Any size.</h1>
-        <p class="lede">Tendril is a printed arm that curls up when you pull a string. It wraps tight at the tip and wide at the base at the same time, so the same arm can pick up something small like a screw or something fat like a roll of tape. Nothing gets adjusted in between.</p>
-        <div class="row">
-          <a class="btn" href="#videos">Watch it work</a>
-          <a class="btn ghost" href="#how">How it works</a>
+    <div class="hero-bg" aria-hidden="true">
+      <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+        <path class="spiral-line" d="M300 300 m0 0 a4 4 0 1 0 6 2 a14 14 0 1 0 -20 8 a30 30 0 1 0 44 -16 a62 62 0 1 0 -92 34 a124 124 0 1 0 186 -70 a236 236 0 1 0 -352 132" />
+      </svg>
+    </div>
+    <div class="shell">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">A printed arm that grabs anything</p>
+        <h1 class="wordmark" aria-label="Tendril">
+          <span>T</span><span>E</span><span>N</span><span>D</span><span>R</span><span>I</span><span>L</span>
+        </h1>
+        <div class="hero-side reveal">
+          <p class="lede">It curls up when you pull a string, wrapping tight at the tip and wide at the base at the same time. The same arm picks up something small like a screw or something fat like a roll of tape.</p>
         </div>
-        <p class="status"><span class="dot"></span> Status: second prototype printed, picking things up by hand</p>
       </div>
-      <figure class="hero-media reveal">
-        <div class="video-frame" data-video>
-          <video playsinline muted loop controls preload="metadata" poster="media/poster.jpg">
-            <source src="media/demo.mp4" type="video/mp4">
-          </video>
-          <div class="video-fallback">
-            <p>Demo video goes here</p>
-            <span>drop <code>demo.mp4</code> into <code>/media</code></span>
-          </div>
+    </div>
+
+    <figure class="hero-media reveal">
+      <div class="video-frame" data-video>
+        <video playsinline muted loop controls preload="metadata" poster="media/poster.jpg">
+          <source src="media/demo.mp4" type="video/mp4">
+        </video>
+        <div class="video-fallback">
+          <p>Demo video goes here</p>
+          <span>drop <code>demo.mp4</code> into <code>/media</code></span>
         </div>
-        <figcaption>Grabbing whatever was on the desk at the time — screwdrivers, scissors, whatever was in reach.</figcaption>
-      </figure>
+      </div>
+      <figcaption class="shell">Grabbing whatever was on the desk at the time — screwdrivers, scissors, whatever was in reach.</figcaption>
+    </figure>
+
+    <div class="shell">
+      <ul class="facts reveal">
+        <li><span>Material</span><strong>PLA</strong></li>
+        <li><span>Length</span><strong>About five inches</strong></li>
+        <li><span>Print time</span><strong>2.3 hours</strong></li>
+        <li><span>Plastic</span><strong>9 g arm, 25 g total</strong></li>
+        <li><span>Control</span><strong>String, by hand</strong></li>
+      </ul>
     </div>
   </section>
 
-  <section class="band">
-    <div class="shell cards">
-      <article class="card reveal">
-        <h3>Any size, same arm</h3>
-        <p>The segments get smaller as they go, so when it curls the tip makes a tight little loop while the base makes a wide one. Whatever you hand it just ends up held by the part of the arm that fits.</p>
-      </article>
-      <article class="card reveal">
-        <h3>One string, nothing else</h3>
-        <p>No motors, no sensors, no electronics at all right now. One line runs the length of the arm, and pulling it closes every joint at once. It wraps around the shape of the object instead of having to know what the object is.</p>
-      </article>
-      <article class="card reveal">
-        <h3>Printed in one piece</h3>
-        <p>There is nothing to assemble. It comes off the printer flat and bends at the thin bits between the segments, and those same thin bits are what spring it back open when you let go of the string.</p>
-      </article>
-    </div>
-  </section>
-
+  <!-- ─────────────────────────── idea ─────────────────────────── -->
   <section class="section" id="how">
     <div class="shell">
-      <p class="eyebrow reveal">The idea</p>
-      <h2 class="reveal">Why a spiral and not a claw</h2>
-      <div class="two-col">
-        <div class="prose reveal">
-          <p>A normal gripper is only good at one size. Jaws big enough for a bottle will crush a marble, and jaws sized for a marble cannot reach around a bottle. You end up building a different gripper for every job.</p>
-          <p>A spiral gets around that, because a spiral does not really have a size. It is tight in the middle and keeps opening out as it goes, and the shape is the same the whole way, just bigger. So when the arm curls into one, it is making a small loop and a big loop at once, and the object just ends up in whichever part of it fits.</p>
-          <p>The way it gets that shape is simple. Each segment is a copy of the one before it, a little smaller every time, and there is a V-shaped gap cut between each pair. When you pull, all those gaps close together and the arm settles into the spiral on its own.</p>
-          <p>The string runs through a channel inside the arm, closer to the inner edge than the outer one. That is the whole trick. Because it sits off to one side, pulling it folds the joints shut instead of just squeezing the arm lengthwise, and the tip closes first because there is less plastic up there to fight it.</p>
+      <header class="section-head reveal">
+        <p class="eyebrow"><i>01</i> The idea</p>
+        <h2>Why a spiral,<br>and not a claw</h2>
+      </header>
+
+      <div class="read">
+        <p class="reveal">A normal gripper is only good at one size. Jaws big enough for a bottle will crush a marble, and jaws sized for a marble cannot reach around a bottle. You end up building a different gripper for every job.</p>
+        <p class="pull reveal">A spiral does not really have a size.</p>
+        <p class="reveal">It is tight in the middle and keeps opening out as it goes, and the shape stays the same the whole way, just bigger. So when the arm curls into one, it is making a small loop and a big loop at once, and the object ends up in whichever part of it fits.</p>
+      </div>
+
+      <figure class="drawing reveal">
+        <img src="media/diagram.svg" alt="The arm straight as printed, and the same arm curled into a spiral when the string is pulled">
+        <figcaption>Flat as it comes off the printer, and the same arm once the string is pulled. The orange line is the string.</figcaption>
+      </figure>
+
+      <div class="split">
+        <article class="note reveal">
+          <h3>Every segment is a copy</h3>
+          <p>Each one is the same shape as the one before it, a little smaller every time, with a V-shaped gap cut between each pair. Pull, and all those gaps close together, and the arm settles into the spiral on its own.</p>
+        </article>
+        <article class="note reveal">
+          <h3>The string sits off to one side</h3>
+          <p>It runs through a channel inside the arm, closer to the inner edge than the outer one. That is the whole trick. Pulling it folds the joints shut instead of squeezing the arm lengthwise, and the tip closes first because there is less plastic up there to fight it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── feature clip: flat pickup ──────────────────── -->
+  <section class="feature" id="flat">
+    <div class="feature-media reveal">
+      <div class="video-frame" data-video>
+        <video playsinline muted loop controls preload="metadata" poster="media/poster-flat.jpg">
+          <source src="media/flat-pickup.mp4" type="video/mp4">
+        </video>
+        <div class="video-fallback">
+          <p>Video goes here</p>
+          <span>drop <code>flat-pickup.mp4</code> into <code>/media</code></span>
         </div>
-        <figure class="drawing reveal">
-          <img src="media/diagram.svg" alt="The arm straight as printed, and the same arm curled into a spiral when the tendon is pulled">
-          <figcaption>Flat as it comes off the bed, and the same arm once the string is pulled. The orange line is the tendon.</figcaption>
-        </figure>
       </div>
     </div>
-  </section>
-
-  <section class="section alt" id="videos">
     <div class="shell">
-      <p class="eyebrow reveal">Videos</p>
-      <h2 class="reveal">Things it can do so far</h2>
-      <p class="sub reveal">All of this is me pulling the string by hand. Nothing is automated yet.</p>
-      <ul class="facts reveal">
-        <li><span>Printed in</span> PLA</li>
-        <li><span>Spiral length</span> about five inches</li>
-        <li><span>Print time</span> 2.3 hours</li>
-        <li><span>Plastic used</span> 9 g for the arm, 25 g with the handle</li>
-        <li><span>Control</span> plain string, pulled by hand</li>
-      </ul>
-      <div class="clips">
-        <figure class="clip reveal">
-          <div class="video-frame" data-video>
-            <video playsinline muted loop controls preload="metadata" poster="media/poster-flat.jpg">
-              <source src="media/flat-pickup.mp4" type="video/mp4">
-            </video>
-            <div class="video-fallback">
-              <p>Video goes here</p>
-              <span>drop <code>flat-pickup.mp4</code> into <code>/media</code></span>
-            </div>
-          </div>
-          <figcaption>
-            <h3>Picking things up off a flat surface</h3>
-            <p>This is the one I was not sure would work. A roll of tape lying flat on the desk has almost nothing to grab, so the arm has to get under the edge and close around it rather than pinch it from the sides. It reshapes itself against the desk as it curls, which is the whole reason a soft arm beats a claw here.</p>
-          </figcaption>
-        </figure>
-        <figure class="clip reveal">
-          <div class="video-frame" data-video>
-            <video playsinline muted loop controls preload="metadata" poster="media/poster-both.jpg">
-              <source src="media/both-ways.mp4" type="video/mp4">
-            </video>
-            <div class="video-fallback">
-              <p>Video goes here</p>
-              <span>drop <code>both-ways.mp4</code> into <code>/media</code></span>
-            </div>
-          </div>
-          <figcaption>
-            <h3>Grabbing from either side</h3>
-            <p>It curls left and it curls right, and it holds the same either way, so you are not stuck approaching an object from one direction. Up and down is the part it cannot do yet. That is the next thing to figure out.</p>
-          </figcaption>
-        </figure>
+      <div class="feature-copy reveal">
+        <p class="eyebrow"><i>02</i> Flat on the desk</p>
+        <h2>The one I was not sure would work</h2>
+        <p>A roll of tape lying flat has almost nothing to hold on to. There is no edge to pinch, so a normal gripper just pushes it around the desk.</p>
+        <p>The arm gets under the edge and closes around it instead, reshaping itself against the desk as it curls. That is the whole reason a soft arm beats a claw here.</p>
       </div>
     </div>
   </section>
 
+  <!-- ─────────────────────────── build log ─────────────────────────── -->
   <section class="section" id="build">
     <div class="shell">
-      <p class="eyebrow reveal">Build log</p>
-      <h2 class="reveal">What it actually took</h2>
-      <p class="sub reveal">On paper this looks like it is just a shape. Most of the actual work has been the stuff the shape does not tell you.</p>
+      <header class="section-head reveal">
+        <p class="eyebrow"><i>03</i> Build log</p>
+        <h2>What it actually took</h2>
+        <p class="sub">On paper this looks like it is just a shape. Most of the real work has been the stuff the shape does not tell you.</p>
+      </header>
+
       <ol class="log">
         <li class="reveal">
           <div class="log-text">
@@ -194,7 +186,7 @@
             <p>Looked up how other people deal with this and the answer was the same everywhere: never leave a sharp inside corner where the load is. So I rounded out the bottom of every gap instead of letting them come to a point. Same arm, same curl, the stress just has somewhere to spread instead of all landing on one line. The second print has held up.</p>
           </div>
           <figure class="shot" data-shot="media/log-fillet.jpg">
-            <img src="media/log-fillet.jpg" alt="Close-up of the enlarged fillet at the notch root">
+            <img src="media/log-fillet.jpg" alt="Close-up of the rounded corner at the bottom of a gap">
             <span class="shot-ph">photo — <code>media/log-fillet.jpg</code></span>
           </figure>
         </li>
@@ -204,7 +196,7 @@
             <p>Pulling a bare string with your fingers is awkward and you lose track of how far you have gone. So I tied a ring on each end, one for closing and one for opening. A finger in each ring and you can work the arm properly, which made testing way quicker than wiring up a motor every time I changed something.</p>
           </div>
           <figure class="shot" data-shot="media/log-rings.jpg">
-            <img src="media/log-rings.jpg" alt="The two finger rings tied to the tendon">
+            <img src="media/log-rings.jpg" alt="The two finger rings tied to the string">
             <span class="shot-ph">photo — <code>media/log-rings.jpg</code></span>
           </figure>
         </li>
@@ -219,25 +211,56 @@
           </figure>
         </li>
       </ol>
+    </div>
+  </section>
 
-      <div class="gallery-head reveal">
-        <h3>More from the build</h3>
-        <p>Prints, failures and whatever else is worth showing.</p>
+  <!-- ──────────────────── second clip: both directions ──────────────────── -->
+  <section class="section alt" id="both">
+    <div class="shell offset-grid">
+      <div class="offset-copy reveal">
+        <p class="eyebrow"><i>04</i> Either direction</p>
+        <h2>It curls both ways</h2>
+        <p>Left or right, it holds the same, so you are not stuck approaching an object from one side.</p>
+        <p>Up and down is the part it cannot do yet. That is the next thing to figure out.</p>
       </div>
+      <figure class="offset-media reveal">
+        <div class="video-frame" data-video>
+          <video playsinline muted loop controls preload="metadata" poster="media/poster-both.jpg">
+            <source src="media/both-ways.mp4" type="video/mp4">
+          </video>
+          <div class="video-fallback">
+            <p>Video goes here</p>
+            <span>drop <code>both-ways.mp4</code> into <code>/media</code></span>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── gallery ─────────────────────────── -->
+  <section class="section" id="gallery">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="eyebrow"><i>05</i> More from the build</p>
+        <h2>Prints, failures, the rest of it</h2>
+      </header>
       <div class="gallery">
-        <figure class="shot reveal" data-shot="media/gallery-1.jpg"><img src="media/gallery-1.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-1.jpg</code></span></figure>
+        <figure class="shot tall reveal" data-shot="media/gallery-1.jpg"><img src="media/gallery-1.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-1.jpg</code></span></figure>
         <figure class="shot reveal" data-shot="media/gallery-2.jpg"><img src="media/gallery-2.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-2.jpg</code></span></figure>
         <figure class="shot reveal" data-shot="media/gallery-3.jpg"><img src="media/gallery-3.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-3.jpg</code></span></figure>
-        <figure class="shot reveal" data-shot="media/gallery-4.jpg"><img src="media/gallery-4.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-4.jpg</code></span></figure>
+        <figure class="shot wide reveal" data-shot="media/gallery-4.jpg"><img src="media/gallery-4.jpg" alt=""><span class="shot-ph">photo — <code>media/gallery-4.jpg</code></span></figure>
       </div>
     </div>
   </section>
 
-  <section class="section" id="phases">
+  <!-- ─────────────────────────── phases ─────────────────────────── -->
+  <section class="section alt" id="phases">
     <div class="shell">
-      <p class="eyebrow reveal">Where this is going</p>
-      <h2 class="reveal">Three phases</h2>
-      <p class="sub reveal">Tendril runs through all three. This page is phase one, and the other two get added here as they happen.</p>
+      <header class="section-head reveal">
+        <p class="eyebrow"><i>06</i> Where this is going</p>
+        <h2>Three phases</h2>
+        <p class="sub">This page is the first one. The other two get added here as they happen.</p>
+      </header>
       <ol class="phase-rail">
         <li class="reveal active">
           <span class="tag">Now</span>
@@ -258,13 +281,13 @@
     </div>
   </section>
 
-
 </main>
 
 <footer class="footer">
   <div class="shell footer-inner">
-    <span>Tendril — built in Toronto by Eben Siyabalapitiya</span>
-    <span class="muted"><a href="https://github.com/Eben-Siyabalapitiya/TENDRIL">Source on GitHub</a></span>
+    <p class="footer-mark">Tendril</p>
+    <p class="footer-line">TKS Focus Project · Build V1<br><span>by Eben Siyabalapitiya</span></p>
+    <p class="footer-link"><a href="https://github.com/Eben-Siyabalapitiya/TENDRIL">Source on GitHub</a></p>
   </div>
 </footer>
 
