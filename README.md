@@ -30,18 +30,18 @@ python -m http.server 8137
 ### Phases
 
 The project runs through Build, Iterate and Create. The nav has all three.
-Build is this page and lives at `/`. The other two unlock as they happen —
-add `iterate.html` and `create.html`, then point the nav links at them and drop
+Build is this page and lives at `/`. The other two unlock as they happen.
+Add `iterate.html` and `create.html`, then point the nav links at them and drop
 `is-locked` from the pill.
 
 ## The arm itself
 
 The printed arm is modelled in Onshape. There is also a parametric script that
-generates the same shape, written first as a way to work the geometry out — it
+generates the same shape, written first as a way to work the geometry out. It
 is a test piece, not what gets printed.
 
 Current build: printed in PLA, spiral about five inches long, 2.3 hours on the
 printer, 9 g of plastic for the arm and 25 g with the handle. Controlled with
-plain string pulled by hand — no servo yet.
+plain string pulled by hand, nothing motorised.
 
 Built by Eben Siyabalapitiya in Toronto.
