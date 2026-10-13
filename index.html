@@ -94,12 +94,12 @@
         <div class="prose reveal">
           <p>A normal gripper has a size it is good at. Jaws that hold a bottle crush a marble, and jaws sized for a marble cannot reach around a bottle.</p>
           <p>A logarithmic spiral, <span class="mono">r = a·e^(b·θ)</span>, does not have a size. Rotate it and you get the same curve, just scaled. So if the arm curls into that shape, it is small near the tip and large near the base at the same moment, and the object picks the part of the arm that fits it.</p>
-          <p>Getting there is mostly bookkeeping. Each segment shrinks by a fixed ratio <span class="mono">q = e^(−b·Δθ)</span>, and every joint gets a V-notch of exactly <span class="mono">Δθ</span>. When all the notches shut, the back face lands on the spiral. With the numbers Tendril uses, the folded shape sits within <strong>0.12%</strong> of a true spiral.</p>
+          <p>Getting there is mostly bookkeeping. Every segment is the same shape as the one before it, just a fixed bit smaller, and every joint gets a V-notch cut at the same angle. Close all the notches at once and the back of the arm lands on the spiral almost exactly.</p>
           <p>The tendon runs through a channel inside each segment, offset toward the inner face. That offset is the lever arm. Pull, and every notch closes at once, tip first because there is less material resisting there.</p>
         </div>
         <figure class="drawing reveal">
-          <img src="media/profile.svg" alt="Drawing of the arm relaxed and fully curled, with the tendon path marked in red and the fitted logarithmic spiral dashed behind it">
-          <figcaption>Generated straight out of the parametric model: relaxed, fully curled, and the fitted spiral behind it.</figcaption>
+          <img src="media/diagram.svg" alt="The arm straight as printed, and the same arm curled into a spiral when the tendon is pulled">
+          <figcaption>Flat as it comes off the bed, and the same arm once the string is pulled. The orange line is the tendon.</figcaption>
         </figure>
       </div>
     </div>
