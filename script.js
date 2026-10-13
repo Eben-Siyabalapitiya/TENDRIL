@@ -194,3 +194,20 @@ if (!reduced) {
 
 // ── entrance sequence on first paint ─────────────────────────────
 requestAnimationFrame(() => document.body.classList.add('is-ready'));
+
+// ── safety net: nothing stays invisible if a reveal was missed ───
+(() => {
+  const check = () => {
+    const h = window.innerHeight;
+    document.querySelectorAll('.reveal:not(.in)').forEach((el) => {
+      if (el.getBoundingClientRect().top < h) el.classList.add('in');
+    });
+  };
+  let queued = false;
+  addEventListener('scroll', () => {
+    if (queued) return;
+    queued = true;
+    setTimeout(() => { check(); queued = false; }, 250);
+  }, { passive: true });
+  addEventListener('load', check);
+})();
