@@ -337,7 +337,7 @@ code { font-family: var(--mono); font-size: .86em; }
   border-radius: var(--radius-lg);
   box-shadow: 0 40px 80px -60px #000;
 }
-.video-frame video { width: 100%; height: 100%; object-fit: contain; background: #000; }
+.video-frame video { width: 100%; height: 100%; object-fit: contain; background: #000; image-rendering: auto; }
 .video-fallback, .shot-ph {
   position: absolute; inset: 0; display: none;
   flex-direction: column; align-items: center; justify-content: center; gap: .3rem;
@@ -449,10 +449,14 @@ code { font-family: var(--mono); font-size: .86em; }
 
 /* ── reveal ──────────────────────────────────────────────────── */
 .reveal {
-  opacity: 0; transform: translateY(26px) scale(.992); filter: blur(5px);
-  transition: opacity 1.1s var(--ease), transform 1.1s var(--ease), filter 1.1s var(--ease);
+  opacity: 0; transform: translateY(26px) scale(.994); filter: blur(2px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease), filter .7s var(--ease);
   will-change: opacity, transform;
 }
+/* media never blurs or scales, it has to stay sharp */
+.hero-media, .clip, .offset-media, .photo, .drawing, .video-frame, .shot { filter: none !important; }
+.hero-media.reveal, .clip.reveal, .offset-media.reveal, .photo.reveal, .drawing.reveal { transform: translateY(22px); }
+.hero-media.reveal.in, .clip.reveal.in, .offset-media.reveal.in, .photo.reveal.in, .drawing.reveal.in { transform: none; }
 .reveal.in { opacity: 1; transform: none; filter: none; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -475,7 +479,7 @@ code { font-family: var(--mono); font-size: .86em; }
 .phase-bar .phases { opacity: 0; transform: translateY(-6px); transition: opacity .8s var(--ease) .55s, transform .8s var(--ease) .55s; }
 .is-ready .phase-bar .phases { opacity: 1; transform: none; }
 
-.hero-media { opacity: 0; transform: translateY(30px) scale(.985); transition: opacity 1.2s var(--ease) .75s, transform 1.2s var(--ease) .75s; }
+.hero-media { opacity: 0; transform: translateY(26px); transition: opacity 1.1s var(--ease) .75s, transform 1.1s var(--ease) .75s; }
 .is-ready .hero-media { opacity: 1; transform: none; }
 
 .facts li { opacity: 0; transform: translateY(12px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
