@@ -233,13 +233,13 @@ code { font-family: var(--mono); font-size: .86em; }
 @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 
 /* hero video, wider than the text column */
-.hero-media { margin: clamp(2rem, 5vw, 3.5rem) 0 0; }
+.hero-media { margin: clamp(2.5rem, 5vw, 4rem) 0 0; }
 .hero-media .video-frame {
-  width: min(100% - 2.5rem, var(--shell));
+  width: min(100%, 740px);
   margin-inline: auto; aspect-ratio: 16 / 9;
-  max-height: 62vh;
+  max-height: 42vh;
 }
-.hero-media figcaption { margin: 1rem auto 0; color: var(--muted); font-size: .88rem; }
+.hero-media figcaption { width: min(100%, 740px); margin: 1rem auto 0; color: var(--muted); font-size: .86rem; }
 
 /* ── fact strip ──────────────────────────────────────────────── */
 .facts {
@@ -312,7 +312,7 @@ code { font-family: var(--mono); font-size: .86em; }
 
  /* single clip, sized not stretched */
 .clip { margin: 0; }
-.clip .video-frame { aspect-ratio: 16 / 9; max-height: 60vh; }
+.clip .video-frame { width: min(100%, 700px); margin-inline: auto; aspect-ratio: 16 / 9; max-height: 40vh; }
 
 /* ── offset clip ─────────────────────────────────────────────── */
 .offset-grid {
@@ -323,7 +323,7 @@ code { font-family: var(--mono); font-size: .86em; }
 .offset-copy h2 { margin-bottom: 1rem; }
 .offset-copy p { color: var(--muted); margin: 0 0 .9rem; max-width: 40ch; }
 .offset-media { margin: 0; }
-.offset-media .video-frame { aspect-ratio: 16 / 10; max-height: 56vh; }
+.offset-media .video-frame { width: min(100%, 560px); aspect-ratio: 16 / 10; max-height: 38vh; }
 
 /* ── media frames ────────────────────────────────────────────── */
 .video-frame, .shot {
