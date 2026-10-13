@@ -94,18 +94,3 @@ document.querySelectorAll('[data-video]').forEach((frame) => {
   if (source) source.addEventListener('error', markEmpty);
   setTimeout(() => { if (!video.videoWidth) markEmpty(); }, 1500);
 });
-
-// ── TKS mark: fall back to type if no logo file is present ───────
-document.querySelectorAll('.tks-logo img').forEach((img) => {
-  // try svg, then png, then fall back to the type lockup
-  const tries = ['media/tks-logo.svg', 'media/tks-logo.png'];
-  let i = 0;
-  const next = () => {
-    i += 1;
-    if (i < tries.length) { img.src = tries[i]; return; }
-    img.setAttribute('data-missing', '');
-  };
-  img.addEventListener('error', next);
-  img.addEventListener('load', () => { if (!img.naturalWidth) next(); });
-  if (img.complete && img.naturalWidth === 0) next();
-});
