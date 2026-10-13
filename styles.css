@@ -237,7 +237,6 @@ code { font-family: var(--mono); font-size: .86em; }
 .hero-media .video-frame {
   width: min(100%, 740px);
   margin-inline: auto; aspect-ratio: 16 / 9;
-  max-height: 42vh;
 }
 .hero-media figcaption { width: min(100%, 740px); margin: 1rem auto 0; color: var(--muted); font-size: .86rem; }
 
@@ -312,7 +311,7 @@ code { font-family: var(--mono); font-size: .86em; }
 
  /* single clip, sized not stretched */
 .clip { margin: 0; }
-.clip .video-frame { width: min(100%, 700px); margin-inline: auto; aspect-ratio: 16 / 9; max-height: 40vh; }
+.clip .video-frame { width: min(100%, 700px); margin-inline: auto; aspect-ratio: 16 / 9; }
 
 /* ── offset clip ─────────────────────────────────────────────── */
 .offset-grid {
@@ -323,7 +322,7 @@ code { font-family: var(--mono); font-size: .86em; }
 .offset-copy h2 { margin-bottom: 1rem; }
 .offset-copy p { color: var(--muted); margin: 0 0 .9rem; max-width: 40ch; }
 .offset-media { margin: 0; }
-.offset-media .video-frame { width: min(100%, 560px); aspect-ratio: 16 / 10; max-height: 38vh; }
+.offset-media .video-frame { width: min(100%, 560px); aspect-ratio: 16 / 9; }
 
 /* ── media frames ────────────────────────────────────────────── */
 .video-frame, .shot {
@@ -333,7 +332,7 @@ code { font-family: var(--mono); font-size: .86em; }
   border-radius: var(--radius-lg);
   box-shadow: 0 40px 80px -60px #000;
 }
-.video-frame video { width: 100%; height: 100%; object-fit: cover; }
+.video-frame video { width: 100%; height: 100%; object-fit: contain; background: #000; }
 .video-fallback, .shot-ph {
   position: absolute; inset: 0; display: none;
   flex-direction: column; align-items: center; justify-content: center; gap: .3rem;
