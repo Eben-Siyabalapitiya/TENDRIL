@@ -137,3 +137,58 @@ if (!reduced) {
   addEventListener('resize', drift, { passive: true });
   drift();
 }
+
+// ── eased page scrolling ────────────────────────────────────────
+(() => {
+  const smooth = !reduced && matchMedia('(pointer: fine)').matches;
+  const max = () => document.documentElement.scrollHeight - window.innerHeight;
+  const clamp = (v) => Math.max(0, Math.min(v, max()));
+
+  let target = window.scrollY;
+  let running = false;
+
+  const tick = () => {
+    const current = window.scrollY;
+    const diff = target - current;
+    if (Math.abs(diff) < 0.5) {
+      window.scrollTo(0, Math.round(target));
+      running = false;
+      return;
+    }
+    window.scrollTo(0, current + diff * 0.09);
+    requestAnimationFrame(tick);
+  };
+  const run = () => { if (!running) { running = true; requestAnimationFrame(tick); } };
+
+  if (smooth) {
+    addEventListener('wheel', (e) => {
+      if (e.ctrlKey || e.deltaMode === 1) return;
+      e.preventDefault();
+      target = clamp(target + e.deltaY);
+      run();
+    }, { passive: false });
+
+    addEventListener('scroll', () => { if (!running) target = window.scrollY; }, { passive: true });
+    addEventListener('resize', () => { target = clamp(target); }, { passive: true });
+    ['keydown', 'touchstart', 'mousedown'].forEach((evt) =>
+      addEventListener(evt, () => { running = false; target = window.scrollY; }, { passive: true }));
+  }
+
+  // anchor links glide instead of jumping
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const id = link.getAttribute('href');
+      if (id === '#' || id === '#top') return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      const top = el.getBoundingClientRect().top + window.scrollY - 90;
+      if (!smooth) { window.scrollTo({ top, behavior: 'smooth' }); return; }
+      target = clamp(top);
+      run();
+    });
+  });
+})();
+
+// ── entrance sequence on first paint ─────────────────────────────
+requestAnimationFrame(() => document.body.classList.add('is-ready'));
