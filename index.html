@@ -34,8 +34,8 @@
     </div>
     <nav>
       <a href="#how">How it works</a>
+      <a href="#videos">Videos</a>
       <a href="#build">Build log</a>
-      <a href="#source">Source</a>
     </nav>
   </div>
 </header>
@@ -47,12 +47,12 @@
       <div class="hero-copy reveal">
         <p class="eyebrow">Built by Eben Siyabalapitiya</p>
         <h1>One string.<br>Any size.</h1>
-        <p class="lede">Tendril is a printed tentacle that curls into a logarithmic spiral when you pull a single tendon. Because the spiral is self-similar, the tip closes small and the base closes wide at the same time, so one arm grabs a marble or a bottle without changing anything.</p>
+        <p class="lede">Tendril is a printed arm that curls up when you pull a string. It wraps tight at the tip and wide at the base at the same time, so the same arm can pick up something small like a screw or something fat like a roll of tape. Nothing gets adjusted in between.</p>
         <div class="row">
-          <a class="btn" href="#how">How it works</a>
-          <a class="btn ghost" href="#source">Source &amp; paper</a>
+          <a class="btn" href="#videos">Watch it work</a>
+          <a class="btn ghost" href="#how">How it works</a>
         </div>
-        <p class="status"><span class="dot"></span> Status: second prototype printed and closing by hand</p>
+        <p class="status"><span class="dot"></span> Status: second prototype printed, picking things up by hand</p>
       </div>
       <figure class="hero-media reveal">
         <div class="video-frame" data-video>
@@ -64,7 +64,7 @@
             <span>drop <code>demo.mp4</code> into <code>/media</code></span>
           </div>
         </div>
-        <figcaption>Tendril closing around an object, one tendon, no sensors.</figcaption>
+        <figcaption>Grabbing whatever was on the desk at the time — screwdrivers, scissors, whatever was in reach.</figcaption>
       </figure>
     </div>
   </section>
@@ -72,16 +72,16 @@
   <section class="band">
     <div class="shell cards">
       <article class="card reveal">
-        <h3>Self-similar by design</h3>
-        <p>Every segment is a scaled copy of the one before it, shrinking by the same ratio each time. Close all the notches and the arm traces a logarithmic spiral, which is the one curve that looks identical at every scale.</p>
+        <h3>Any size, same arm</h3>
+        <p>The segments get smaller as they go, so when it curls the tip makes a tight little loop while the base makes a wide one. Whatever you hand it just ends up held by the part of the arm that fits.</p>
       </article>
       <article class="card reveal">
-        <h3>One tendon, no sensors</h3>
-        <p>A single line runs from the base to the tip. Pull it and the arm curls from the tip inward, so it conforms to whatever it hits instead of needing to know what it is holding.</p>
+        <h3>One string, nothing else</h3>
+        <p>No motors, no sensors, no electronics at all right now. One line runs the length of the arm, and pulling it closes every joint at once. It wraps around the shape of the object instead of having to know what the object is.</p>
       </article>
       <article class="card reveal">
-        <h3>One piece, printed flat</h3>
-        <p>No hinges to assemble and nothing to bolt together. Thin ligaments on the back face act as living hinges and as the spring that straightens the arm again when the tendon releases.</p>
+        <h3>Printed in one piece</h3>
+        <p>There is nothing to assemble. It comes off the printer flat and bends at the thin bits between the segments, and those same thin bits are what spring it back open when you let go of the string.</p>
       </article>
     </div>
   </section>
@@ -92,10 +92,10 @@
       <h2 class="reveal">Why a spiral and not a claw</h2>
       <div class="two-col">
         <div class="prose reveal">
-          <p>A normal gripper has a size it is good at. Jaws that hold a bottle crush a marble, and jaws sized for a marble cannot reach around a bottle.</p>
-          <p>A logarithmic spiral, <span class="mono">r = a·e^(b·θ)</span>, does not have a size. Rotate it and you get the same curve, just scaled. So if the arm curls into that shape, it is small near the tip and large near the base at the same moment, and the object picks the part of the arm that fits it.</p>
-          <p>Getting there is mostly bookkeeping. Every segment is the same shape as the one before it, just a fixed bit smaller, and every joint gets a V-notch cut at the same angle. Close all the notches at once and the back of the arm lands on the spiral almost exactly.</p>
-          <p>The tendon runs through a channel inside each segment, offset toward the inner face. That offset is the lever arm. Pull, and every notch closes at once, tip first because there is less material resisting there.</p>
+          <p>A normal gripper is only good at one size. Jaws big enough for a bottle will crush a marble, and jaws sized for a marble cannot reach around a bottle. You end up building a different gripper for every job.</p>
+          <p>A spiral gets around that, because a spiral does not really have a size. It is tight in the middle and keeps opening out as it goes, and the shape is the same the whole way, just bigger. So when the arm curls into one, it is making a small loop and a big loop at once, and the object just ends up in whichever part of it fits.</p>
+          <p>The way it gets that shape is simple. Each segment is a copy of the one before it, a little smaller every time, and there is a V-shaped gap cut between each pair. When you pull, all those gaps close together and the arm settles into the spiral on its own.</p>
+          <p>The string runs through a channel inside the arm, closer to the inner edge than the outer one. That is the whole trick. Because it sits off to one side, pulling it folds the joints shut instead of just squeezing the arm lengthwise, and the tip closes first because there is less plastic up there to fight it.</p>
         </div>
         <figure class="drawing reveal">
           <img src="media/diagram.svg" alt="The arm straight as printed, and the same arm curled into a spiral when the tendon is pulled">
@@ -105,23 +105,50 @@
     </div>
   </section>
 
-  <section class="section alt" id="specs">
+  <section class="section alt" id="videos">
     <div class="shell">
-      <p class="eyebrow reveal">At a glance</p>
-      <h2 class="reveal">Numbers</h2>
-      <p class="sub reveal">The current parameter set. All of it comes out of the generator, so changing one number rewrites the rest.</p>
-      <dl class="specs reveal">
-        <div><dt>Segments</dt><dd>18</dd></div>
-        <div><dt>Notch angle</dt><dd>18° each</dd></div>
-        <div><dt>Total curl</dt><dd>324°, about nine tenths of a turn</dd></div>
-        <div><dt>Length</dt><dd>202 mm along the back</dd></div>
-        <div><dt>Taper</dt><dd>tip is 26% of the base</dd></div>
-        <div><dt>Coil radius</dt><dd>17 mm inner to 60 mm outer</dd></div>
-        <div><dt>Tendon stroke</dt><dd>21.4 mm, straight to closed</dd></div>
-        <div><dt>Material</dt><dd>PETG, about 16 g</dd></div>
-        <div><dt>Actuation</dt><dd>one line, 10 mm winch on a servo horn</dd></div>
-        <div><dt>Spiral error</dt><dd>0.12% max radial</dd></div>
-      </dl>
+      <p class="eyebrow reveal">Videos</p>
+      <h2 class="reveal">Things it can do so far</h2>
+      <p class="sub reveal">All of this is me pulling the string by hand. Nothing is automated yet.</p>
+      <ul class="facts reveal">
+        <li><span>Printed in</span> PLA</li>
+        <li><span>Spiral length</span> about five inches</li>
+        <li><span>Print time</span> 2.3 hours</li>
+        <li><span>Plastic used</span> 9 g for the arm, 25 g with the handle</li>
+        <li><span>Control</span> plain string, pulled by hand</li>
+      </ul>
+      <div class="clips">
+        <figure class="clip reveal">
+          <div class="video-frame" data-video>
+            <video playsinline muted loop controls preload="metadata" poster="media/poster-flat.jpg">
+              <source src="media/flat-pickup.mp4" type="video/mp4">
+            </video>
+            <div class="video-fallback">
+              <p>Video goes here</p>
+              <span>drop <code>flat-pickup.mp4</code> into <code>/media</code></span>
+            </div>
+          </div>
+          <figcaption>
+            <h3>Picking things up off a flat surface</h3>
+            <p>This is the one I was not sure would work. A roll of tape lying flat on the desk has almost nothing to grab, so the arm has to get under the edge and close around it rather than pinch it from the sides. It reshapes itself against the desk as it curls, which is the whole reason a soft arm beats a claw here.</p>
+          </figcaption>
+        </figure>
+        <figure class="clip reveal">
+          <div class="video-frame" data-video>
+            <video playsinline muted loop controls preload="metadata" poster="media/poster-both.jpg">
+              <source src="media/both-ways.mp4" type="video/mp4">
+            </video>
+            <div class="video-fallback">
+              <p>Video goes here</p>
+              <span>drop <code>both-ways.mp4</code> into <code>/media</code></span>
+            </div>
+          </div>
+          <figcaption>
+            <h3>Grabbing from either side</h3>
+            <p>It curls left and it curls right, and it holds the same either way, so you are not stuck approaching an object from one direction. Up and down is the part it cannot do yet. That is the next thing to figure out.</p>
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -129,32 +156,32 @@
     <div class="shell">
       <p class="eyebrow reveal">Build log</p>
       <h2 class="reveal">What it actually took</h2>
-      <p class="sub reveal">The paper makes this look like a shape problem. Most of the work so far has been everything the shape does not tell you.</p>
+      <p class="sub reveal">On paper this looks like it is just a shape. Most of the actual work has been the stuff the shape does not tell you.</p>
       <ol class="log">
         <li class="reveal">
           <div class="log-text">
-            <h3>Writing the generator</h3>
-            <p>Drawing 18 segments by hand was never going to work, since changing the spiral constant changes every single one. So the arm is a script. It writes the mesh, a flat profile for CAD, and a build sheet with every dimension in it.</p>
+            <h3>Two ways of drawing it</h3>
+            <p>The first thing I tried was writing a script that builds the arm for you, since the moment you change the curl even a little, every segment changes with it. That worked and it was a good way to understand the shape, but the version that actually got printed is modelled in Onshape. The script stayed as a test and a way to check my numbers.</p>
           </div>
           <figure class="shot" data-shot="media/log-generator.jpg">
-            <img src="media/log-generator.jpg" alt="The generator output on screen">
+            <img src="media/log-generator.jpg" alt="The arm being modelled">
             <span class="shot-ph">photo — <code>media/log-generator.jpg</code></span>
           </figure>
         </li>
         <li class="reveal">
           <div class="log-text">
-            <h3>Making the tendon channel exist</h3>
-            <p>There is no boolean kernel in a few hundred lines of plain Python, so the channel could not be cut out of a solid. The arm is built instead as a set of abutting closed shells with the gap already between them, and a separate script ray-casts the finished file to prove every edge is used twice and no volume is inside out.</p>
+            <h3>Getting a hole down the middle</h3>
+            <p>The string has to run through the inside of the arm, and it has to sit closer to one edge than the other or the thing will not fold. Lining that channel up through every segment, while each segment is a different size, took a few goes in CAD before it came out straight.</p>
           </div>
           <figure class="shot" data-shot="media/log-channel.jpg">
-            <img src="media/log-channel.jpg" alt="Sliced view showing the tendon channel">
+            <img src="media/log-channel.jpg" alt="The channel the string runs through">
             <span class="shot-ph">photo — <code>media/log-channel.jpg</code></span>
           </figure>
         </li>
         <li class="reveal">
           <div class="log-text">
             <h3>The first one snapped at the base</h3>
-            <p>First print curled fine for a few pulls, then broke at the bottom segment. Obvious in hindsight. The base hinge carries every notch above it, so all the tension in the line ends up concentrated in the thinnest bit of material at the very bottom, and the sharp inside corner of the notch is exactly where a crack wants to start.</p>
+            <p>The first print curled fine for a few pulls and then snapped at the very bottom. Makes sense looking back. The bottom joint is holding the whole arm, so everything you pull ends up loaded onto that one thin piece of plastic, and it had a sharp corner in it, which is exactly where a crack likes to start.</p>
           </div>
           <figure class="shot" data-shot="media/log-break.jpg">
             <img src="media/log-break.jpg" alt="The first prototype broken at the base segment">
@@ -164,7 +191,7 @@
         <li class="reveal">
           <div class="log-text">
             <h3>Fixing it with a bigger fillet</h3>
-            <p>Went back and read how other soft and tendon-driven arms deal with this, and it is the same answer everywhere: never leave a sharp corner where the load is. So I put a much larger fillet in the root of each notch, biggest at the base where the load is highest. Same geometry, same spiral, the stress just has somewhere to spread out instead of piling into one line. Second print has not broken.</p>
+            <p>Looked up how other people deal with this and the answer was the same everywhere: never leave a sharp inside corner where the load is. So I rounded out the bottom of every gap instead of letting them come to a point. Same arm, same curl, the stress just has somewhere to spread instead of all landing on one line. The second print has held up.</p>
           </div>
           <figure class="shot" data-shot="media/log-fillet.jpg">
             <img src="media/log-fillet.jpg" alt="Close-up of the enlarged fillet at the notch root">
@@ -174,7 +201,7 @@
         <li class="reveal">
           <div class="log-text">
             <h3>Rings on the string</h3>
-            <p>Pulling a bare line with your fingers is awkward and you cannot feel how far you have gone. I tied a ring on each end instead, one to close and one to open, so each direction gets its own finger and the whole arm is controllable by hand. It also made testing much faster, since there is no servo to re-home every time something changes.</p>
+            <p>Pulling a bare string with your fingers is awkward and you lose track of how far you have gone. So I tied a ring on each end, one for closing and one for opening. A finger in each ring and you can work the arm properly, which made testing way quicker than wiring up a motor every time I changed something.</p>
           </div>
           <figure class="shot" data-shot="media/log-rings.jpg">
             <img src="media/log-rings.jpg" alt="The two finger rings tied to the tendon">
@@ -183,8 +210,8 @@
         </li>
         <li class="reveal pending">
           <div class="log-text">
-            <h3>Putting it on a servo</h3>
-            <p>Next. A 10 mm spool on a standard horn covers the 21.4 mm of stroke in about a 120° sweep. The open question is whether the living hinges spring back hard enough on their own, or whether it needs an elastic cord down the middle to straighten out.</p>
+            <h3>Putting it on a motor</h3>
+            <p>Next up. A servo with a little spool on it should be able to pull the string about as far as my fingers do. The thing I am not sure about is whether the arm springs itself back open properly once a motor is holding the line, or whether it needs an elastic cord running down the middle to help it straighten.</p>
           </div>
           <figure class="shot" data-shot="media/log-servo.jpg">
             <img src="media/log-servo.jpg" alt="Servo and spool setup">
@@ -215,12 +242,12 @@
         <li class="reveal active">
           <span class="tag">Now</span>
           <h3>Build</h3>
-          <p>Rebuild someone else's work and find out what the paper leaves out. Reproduce the SpiRobs spiral gripper, print it, break it, fix it, close it by hand.</p>
+          <p>Rebuild something that already exists and find out what gets left out when people write it up. Print it, break it, fix it, get it picking things up.</p>
         </li>
         <li class="reveal">
           <span class="tag">Next</span>
           <h3>Iterate</h3>
-          <p>Take the working reproduction and push on it. Change the parameters, test what actually holds, and make it better than the version I copied.</p>
+          <p>Take the version that works and push on it. Change things, test what actually holds, and get it better than where it started.</p>
         </li>
         <li class="reveal">
           <span class="tag">After</span>
@@ -231,27 +258,13 @@
     </div>
   </section>
 
-  <section class="section alt" id="source">
-    <div class="shell credit">
-      <p class="eyebrow reveal">Credit where it is due</p>
-      <h2 class="reveal">This is a reproduction</h2>
-      <div class="prose reveal">
-        <p>The design principle is not mine. It comes from <em>SpiRobs: Logarithmic spiral-shaped robots for versatile grasping across scales</em> by Zhanchi Wang, Nikolaos Freris and Xiaobo Wei, published in <em>Device</em> in 2024. I rebuilt it to find out what the paper leaves out, which turned out to be most of the manufacturing.</p>
-        <p>The geometry generator, the mesh checker and this site are mine. Everything is open.</p>
-      </div>
-      <div class="row reveal">
-        <a class="btn" href="https://github.com/Eben-Siyabalapitiya/TENDRIL">Tendril on GitHub</a>
-        <a class="btn ghost" href="https://www.cell.com/device/fulltext/S2666-9986(24)00569-X">Read the paper</a>
-      </div>
-    </div>
-  </section>
 
 </main>
 
 <footer class="footer">
   <div class="shell footer-inner">
     <span>Tendril — built in Toronto by Eben Siyabalapitiya</span>
-    <span class="muted">Reproduction of Wang, Freris &amp; Wei, <em>Device</em> 2024</span>
+    <span class="muted"><a href="https://github.com/Eben-Siyabalapitiya/TENDRIL">Source on GitHub</a></span>
   </div>
 </footer>
 
