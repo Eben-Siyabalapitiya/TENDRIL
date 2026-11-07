@@ -210,12 +210,18 @@
       <div class="curl reveal" data-curl>
         <div class="curl-stage">
           <canvas></canvas>
-          <p class="viewer-hint"><span>drag the slider</span></p>
+          <p class="viewer-hint"><span>pick a direction, drag the slider</span></p>
         </div>
 
         <div class="viewer-side">
           <p class="viewer-label">The curl</p>
-          <p class="curl-copy">Eighteen segments, each one 92.4% of the length of the one before it. Pull the string and every V gap folds by the same angle at once, so the arm rolls into a spiral instead of hinging in one place.</p>
+          <p class="curl-copy">Eighteen segments, each one 92.4% of the length of the one before it. Pull a string and every V gap folds by the same angle at once, so the arm rolls into a spiral instead of hinging in one place.</p>
+
+          <div class="curl-dirs" role="group" aria-label="Which way it closes">
+            <button type="button" data-dir="left" class="is-on" aria-pressed="true">Left</button>
+            <button type="button" data-dir="right" aria-pressed="false">Right</button>
+            <button type="button" data-dir="second" aria-pressed="false">Second axis</button>
+          </div>
 
           <label class="curl-slider">
             <span>Flat</span>
@@ -229,12 +235,13 @@
             <dt>Total wrap</dt>
             <dd data-wrap>0°</dd>
           </dl>
+          <p class="curl-plane" data-plane>Channel one · 0°</p>
         </div>
       </div>
 
       <div class="read" style="margin-top:2.5rem">
         <p class="reveal">The arm prints in two halves because 354 mm will not fit on the bed in one go, and the two meet at a seam where both ends are the same 20.7 × 17.9 mm. That seam is the only joint in the whole thing that is not a living hinge.</p>
-        <p class="reveal">The sketch above it is the same geometry solved live, not a video of one. It is drawn from the numbers in <code>make_diagram.py</code>, so dragging that slider is the arm doing exactly what the real one does: eighteen joints folding 18° each, 324° of wrap by the time it is shut.</p>
+        <p class="reveal">The sketch above it is the same geometry solved live, not a video of one, drawn from the numbers in <code>make_diagram.py</code>. Eighteen joints folding 18° each is 324° of wrap by the time it is shut, whichever way it closes. The first channel gives the two directions V1 already had; the second one adds the third, drawn here square to the first while the real angle is still being settled in CAD.</p>
       </div>
     </div>
   </section>

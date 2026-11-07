@@ -738,3 +738,19 @@ code { font-family: var(--mono); font-size: .86em; }
   .curl { grid-template-columns: 1fr; }
   .curl-stage { aspect-ratio: 4 / 3; }
 }
+
+.curl-dirs { display: flex; gap: 2px; flex-wrap: wrap; }
+.curl-dirs button {
+  font: inherit; font-size: .76rem; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--muted); background: transparent;
+  border: 1px solid var(--hairline-soft); border-radius: 9px;
+  padding: .4rem .65rem; cursor: pointer;
+  transition: color .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+}
+.curl-dirs button:hover { color: var(--fg); background: var(--surface); }
+.curl-dirs button.is-on { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+
+.curl-plane {
+  margin: .9rem 0 0;
+  font-family: var(--mono); font-size: .72rem; color: var(--faint);
+}
