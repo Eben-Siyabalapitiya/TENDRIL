@@ -209,9 +209,34 @@
         </div>
       </div>
 
+      <div class="curl reveal" data-curl>
+        <div class="curl-stage">
+          <canvas></canvas>
+          <p class="viewer-hint"><span>drag the slider</span></p>
+        </div>
+
+        <div class="viewer-side">
+          <p class="viewer-label">The curl</p>
+          <p class="curl-copy">Eighteen segments, each one 92.4% of the length of the one before it. Pull the string and every V gap folds by the same angle at once, so the arm rolls into a spiral instead of hinging in one place.</p>
+
+          <label class="curl-slider">
+            <span>Flat</span>
+            <input type="range" min="0" max="100" value="0" aria-label="How far the arm is curled">
+            <span>Closed</span>
+          </label>
+
+          <dl class="viewer-spec curl-spec">
+            <dt>Each joint</dt>
+            <dd data-joint>0.0°</dd>
+            <dt>Total wrap</dt>
+            <dd data-wrap>0°</dd>
+          </dl>
+        </div>
+      </div>
+
       <div class="read" style="margin-top:2.5rem">
         <p class="reveal">The arm prints in two halves because 354 mm will not fit on the bed in one go, and the two meet at a seam where both ends are the same 20.7 × 17.9 mm. That seam is the only joint in the whole thing that is not a living hinge.</p>
-        <p class="reveal">Zoom in on the underside once. The V-shaped gap between every pair of segments is the entire mechanism: pull the string and those gaps close one after another, smallest first, and the arm rolls up.</p>
+        <p class="reveal">The sketch above it is the same geometry solved live, not a video of one. It is drawn from the numbers in <code>make_diagram.py</code>, so dragging that slider is the arm doing exactly what the real one does: eighteen joints folding 18° each, 324° of wrap by the time it is shut.</p>
       </div>
     </div>
   </section>
@@ -427,5 +452,6 @@
 }
 </script>
 <script type="module" src="viewer.js"></script>
+<script src="curl.js" defer></script>
 </body>
 </html>
