@@ -55,3 +55,31 @@ the browser can start playing before the whole thing has downloaded.
 
 Re-encoding the existing `.mp4` files works, but going back to the original `.MOV` is
 better, since compressing something that is already compressed loses a little each time.
+
+## `media/cad` — the 3D viewer
+
+`iterate.html` loads these with three.js. Everything in there is generated, so if a
+part changes, regenerate rather than editing by hand.
+
+| File | What it is |
+| --- | --- |
+| `tip-half.glb`, `base-half.glb` | the two halves of the arm, 186.3 mm and 168.1 mm |
+| `rings-20.glb`, `rings-25.glb`, `rings-30.glb` | guide rings, by bore |
+| `handle.glb` | the manual adapter |
+| `*.jpg` | a still render of each part, used on the cards and as the viewer's placeholder |
+| `full-arm.jpg` | both halves assembled, 354.4 mm |
+
+The glTF files come from the STEP exports, tessellated and decimated to about 26k
+triangles each so the whole folder stays under 1.7 MB:
+
+```bash
+pip install cascadio trimesh numpy fast_simplification
+```
+
+`cascadio.step_to_glb()` does the tessellation, `fast_simplification.simplify()` the
+decimation, and the meshes are re-centred on the origin and left in metres, which is
+what glTF expects. The viewer puts the two arm halves back together itself, so there
+is no assembled file to keep in sync.
+
+The lengths quoted on the page are measured off these meshes, not typed in. If a part
+is replaced, re-measure it rather than guessing.
