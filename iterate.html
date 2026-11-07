@@ -37,6 +37,7 @@
 
     <nav>
       <a href="#changes">What changed</a>
+      <a href="#model">3D model</a>
       <a href="#log">Iterate log</a>
       <a href="#tests">Tests</a>
       <a href="https://github.com/Eben-Siyabalapitiya/TENDRIL">GitHub</a>
@@ -164,12 +165,115 @@
     </div>
   </section>
 
+  <!-- ──────────────────── the model ──────────────────── -->
+  <section class="section" id="model">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="eyebrow"><i>03</i> The model</p>
+        <h2>Turn it over<br>yourself</h2>
+        <p class="sub">This is the actual CAD, not a picture of it. Drag to spin it, scroll to zoom, and switch parts on the right. Every measurement below was read straight off the geometry.</p>
+      </header>
+
+      <div class="model reveal" data-viewer>
+        <div class="viewer-stage">
+          <canvas></canvas>
+          <img class="viewer-still" src="media/cad/full-arm.jpg" alt="The full tentacle arm, 354 mm of tapering segments" loading="lazy">
+          <p class="viewer-hint"><span>drag to turn</span><span>then scroll to zoom</span></p>
+          <div class="viewer-bar" aria-hidden="true"></div>
+        </div>
+
+        <div class="viewer-side">
+          <p class="viewer-label">Parts</p>
+          <div class="viewer-parts" role="group" aria-label="Choose a part">
+            <button type="button" data-part="arm" class="is-on">Full arm</button>
+            <button type="button" data-part="tip-half">Tip half</button>
+            <button type="button" data-part="base-half">Base half</button>
+            <button type="button" data-part="rings-20">Rings 20 mm</button>
+            <button type="button" data-part="rings-25">Rings 25 mm</button>
+            <button type="button" data-part="rings-30">Rings 30 mm</button>
+            <button type="button" data-part="handle">Handle</button>
+          </div>
+
+          <dl class="viewer-spec">
+            <dt>Bounding size</dt>
+            <dd data-dims>354.4 × 33.1 × 28.8 mm</dd>
+            <dt>What it is</dt>
+            <dd data-note>Both halves joined at the seam, tip to base.</dd>
+          </dl>
+
+          <div class="viewer-tools">
+            <button type="button" data-tool="spin" aria-pressed="false">Spin</button>
+            <button type="button" data-tool="edges" aria-pressed="true" class="is-on">Edges</button>
+            <button type="button" data-tool="reset">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="read" style="margin-top:2.5rem">
+        <p class="reveal">The arm prints in two halves because 354 mm will not fit on the bed in one go, and the two meet at a seam where both ends are the same 20.7 × 17.9 mm. That seam is the only joint in the whole thing that is not a living hinge.</p>
+        <p class="reveal">Zoom in on the underside once. The V-shaped gap between every pair of segments is the entire mechanism: pull the string and those gaps close one after another, smallest first, and the arm rolls up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── parts ──────────────────── -->
+  <section class="section alt" id="parts">
+    <div class="shell">
+      <header class="section-head reveal">
+        <p class="eyebrow"><i>04</i> 3D model parts</p>
+        <h2>Six files,<br>one arm</h2>
+        <p class="sub">What comes off the bed, and what each piece is for.</p>
+      </header>
+
+      <ul class="parts reveal">
+        <li>
+          <figure><img src="media/cad/tip-half.jpg" alt="The tip half of the arm" loading="lazy"></figure>
+          <h3>Tip half</h3>
+          <p class="part-dim">186.3 × 20.7 × 17.9 mm</p>
+          <p>The thin end. Each segment is a shrunk copy of the one before it, down to a tip small enough that printing it any smaller stops being worth it.</p>
+        </li>
+        <li>
+          <figure><img src="media/cad/base-half.jpg" alt="The base half of the arm" loading="lazy"></figure>
+          <h3>Base half</h3>
+          <p class="part-dim">168.1 × 33.1 × 28.8 mm</p>
+          <p>The end that holds everything up, and the end that snapped on V1. Fewer, fatter segments, and the one place where adding material actually matters.</p>
+        </li>
+        <li>
+          <figure><img src="media/cad/handle.jpg" alt="The manual handle adapter" loading="lazy"></figure>
+          <h3>Handle</h3>
+          <p class="part-dim">24.0 × 53.0 × 35.0 mm</p>
+          <p>The manual adapter. No motor anywhere in this build, so this block and a finger are the whole actuator.</p>
+        </li>
+        <li>
+          <figure><img src="media/cad/rings-20.jpg" alt="Guide rings with a 20 mm bore" loading="lazy"></figure>
+          <h3>Rings, 20 mm</h3>
+          <p class="part-dim">100.0 × 30.0 × 15.0 mm</p>
+          <p>Three guide rings on one plate. The tightest bore, so the tendon is held closest to the body and the curl comes on hardest.</p>
+        </li>
+        <li>
+          <figure><img src="media/cad/rings-25.jpg" alt="Guide rings with a 25 mm bore" loading="lazy"></figure>
+          <h3>Rings, 25 mm</h3>
+          <p class="part-dim">125.0 × 35.0 × 20.0 mm</p>
+          <p>The middle set. Changing ring size is the cheapest way to change how the arm closes without touching the arm itself.</p>
+        </li>
+        <li>
+          <figure><img src="media/cad/rings-30.jpg" alt="Guide rings with a 30 mm bore" loading="lazy"></figure>
+          <h3>Rings, 30 mm</h3>
+          <p class="part-dim">130.0 × 40.0 × 20.0 mm</p>
+          <p>The widest bore. Loosest curl, biggest opening, least force at the tip.</p>
+        </li>
+      </ul>
+
+      <p class="source-note reveal">These are the reference parts this build started from, exported as STEP and tessellated for the browser. The V2 geometry is being drawn in Onshape and goes here once it prints.</p>
+    </div>
+  </section>
+
   <!-- ─────────────────────────── iterate log ─────────────────────────── -->
   <section class="section" id="log">
     <div class="shell log-layout">
       <aside class="log-rail">
         <div class="log-rail-inner">
-          <p class="eyebrow"><i>03</i> Iterate log</p>
+          <p class="eyebrow"><i>05</i> Iterate log</p>
           <h2>What the<br>second one took</h2>
           <p class="sub">Phase one was finding out what the write-up left out. This one is finding out what the first arm left out.</p>
           <ol class="rail-steps" aria-hidden="true">
@@ -229,7 +333,7 @@
   <section class="section alt" id="tests">
     <div class="shell">
       <header class="section-head reveal">
-        <p class="eyebrow"><i>04</i> Tests</p>
+        <p class="eyebrow"><i>06</i> Tests</p>
         <h2>Proving it got better,<br>not saying it did</h2>
         <p class="sub">Phase one ended with me knowing it worked because I watched it work. That is not enough to claim V2 is an improvement, so this is the part with numbers in it. These fill in as the tests get run.</p>
       </header>
@@ -259,7 +363,7 @@
   <section class="section" id="next">
     <div class="shell">
       <header class="section-head reveal">
-        <p class="eyebrow"><i>05</i> Still missing</p>
+        <p class="eyebrow"><i>07</i> Still missing</p>
         <h2>What V2 does not fix</h2>
       </header>
       <div class="split">
@@ -279,7 +383,7 @@
   <section class="section alt" id="phases">
     <div class="shell">
       <header class="section-head reveal">
-        <p class="eyebrow"><i>06</i> Where this is going</p>
+        <p class="eyebrow"><i>08</i> Where this is going</p>
         <h2>Three phases</h2>
         <p class="sub">This is the second one. The last one gets added here when it happens.</p>
       </header>
@@ -314,5 +418,14 @@
 </footer>
 
 <script src="script.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="viewer.js"></script>
 </body>
 </html>

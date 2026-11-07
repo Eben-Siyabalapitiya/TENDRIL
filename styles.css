@@ -680,3 +680,7 @@ code { font-family: var(--mono); font-size: .86em; }
   .viewer-bar::after { animation: none; }
   .viewer-still { transition: none; }
 }
+
+.viewer-hint span + span { opacity: 0; transition: opacity .5s var(--ease); }
+.viewer-hint span + span::before { content: ' · '; }
+.is-held .viewer-hint span + span { opacity: 1; }
