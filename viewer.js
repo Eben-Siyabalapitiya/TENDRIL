@@ -33,22 +33,10 @@ const PARTS = {
     note: 'The end that carries the whole arm, and the end that cracked on V1.'
   },
   'rings-20': {
-    label: 'Rings 20 mm',
+    label: 'Guide rings',
     files: [['media/cad/rings-20.glb', 0]],
     dims: '100.0 × 30.0 × 15.0',
-    note: 'Guide rings, 20 mm bore. The smallest of the three sets.'
-  },
-  'rings-25': {
-    label: 'Rings 25 mm',
-    files: [['media/cad/rings-25.glb', 0]],
-    dims: '125.0 × 35.0 × 20.0',
-    note: 'Guide rings, 25 mm bore.'
-  },
-  'rings-30': {
-    label: 'Rings 30 mm',
-    files: [['media/cad/rings-30.glb', 0]],
-    dims: '130.0 × 40.0 × 20.0',
-    note: 'Guide rings, 30 mm bore. Widest spacing, loosest curl.'
+    note: 'Three rings on one plate, 20 mm bore. The string runs through these.'
   },
   'handle': {
     label: 'Handle',

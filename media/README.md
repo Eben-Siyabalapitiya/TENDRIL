@@ -64,7 +64,7 @@ part changes, regenerate rather than editing by hand.
 | File | What it is |
 | --- | --- |
 | `tip-half.glb`, `base-half.glb` | the two halves of the arm, 186.3 mm and 168.1 mm |
-| `rings-20.glb`, `rings-25.glb`, `rings-30.glb` | guide rings, by bore |
+| `rings-20.glb` | the guide rings, 20 mm bore |
 | `handle.glb` | the manual adapter |
 | `*.jpg` | a still render of each part, used on the cards and as the viewer's placeholder |
 | `full-arm.jpg` | both halves assembled, 354.4 mm |
