@@ -88,11 +88,24 @@ document.querySelectorAll('.shot').forEach((figure) => {
 document.querySelectorAll('[data-video]').forEach((frame) => {
   const video = frame.querySelector('video');
   if (!video) return;
+
+  let timer;
   const markEmpty = () => frame.classList.add('is-empty');
+  const ok = () => { clearTimeout(timer); frame.classList.remove('is-empty'); };
+
+  // any of these means the file is really there
+  video.addEventListener('loadedmetadata', ok);
+  video.addEventListener('loadeddata', ok);
+  video.addEventListener('progress', () => clearTimeout(timer), { once: true });
+
+  // only a real error means it is not
   video.addEventListener('error', markEmpty, true);
   const source = video.querySelector('source');
   if (source) source.addEventListener('error', markEmpty);
-  setTimeout(() => { if (!video.videoWidth) markEmpty(); }, 1500);
+
+  // last resort, long enough that a slow connection is not called a missing file
+  timer = setTimeout(() => { if (!video.videoWidth) markEmpty(); }, 15000);
+  if (video.readyState >= 1) ok();
 });
 
 // ── build log: highlight the step you are reading ────────────────
