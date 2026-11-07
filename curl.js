@@ -56,7 +56,7 @@
         .map((p) => at(m, p[0], p[1]));
       const a = at(m, g / 2, hA * TENDON);
       const b = at(m, pitch - g / 2, hB * TENDON);
-      segs.push({ poly, cord: prev ? [prev, a, b] : [a, b] });
+      segs.push({ poly, cord: prev ? [prev, a, b] : [a, b], depth: hA });
       prev = b;
       m = mul(m, [1, 0, pitch - (gap - g), 0, 1, 0]);
       m = mul(m, rot(DTHETA * curl));
@@ -72,19 +72,41 @@
     return [X * CP - Y * SP, Z * CT - t * ST, t * CT + Z * ST];
   }
 
-  // Fit flat and fit closed, then interpolate between the two transforms.
-  // Refitting every frame makes the drawing swim; this does not.
-  function fitFor(curl, phi, w, h) {
-    let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
-    for (const s of arm(curl)) for (const p of s.poly) {
+  // the plate the arm is bolted to, in the same plane as the arm
+  const BLOCK = [[-13, 0], [0, 0], [0, H0 * 1.05], [-13, H0 * 1.05]];
+
+  // Tight box of one pose, on screen.
+  function boxOf(curl, phi) {
+    let b = [1e9, 1e9, -1e9, -1e9];
+    const take = (p) => {
       const q = place(p, phi);
-      if (q[0] < x0) x0 = q[0]; if (q[0] > x1) x1 = q[0];
-      if (q[1] < y0) y0 = q[1]; if (q[1] > y1) y1 = q[1];
-    }
-    const pad = H0 * 1.6;
-    x0 -= pad; y0 -= pad; x1 += pad; y1 += pad;
-    const k = Math.min(w / (x1 - x0), h / (y1 - y0)) * 0.94;
-    return [k, (w - (x1 + x0) * k) / 2, (h + (y1 + y0) * k) / 2];
+      if (q[0] < b[0]) b[0] = q[0]; if (q[1] < b[1]) b[1] = q[1];
+      if (q[0] > b[2]) b[2] = q[0]; if (q[1] > b[3]) b[3] = q[1];
+    };
+    for (const s of arm(curl)) for (const p of s.poly) take(p);
+    for (const p of BLOCK) take(p);
+    return b;
+  }
+
+  // The view follows the arm as it closes, so it fills the frame at both ends.
+  // Interpolating between just the flat and the closed box clips the poses in
+  // between, which sweep wider than either, so the envelope is sampled and
+  // each sample widened to cover its neighbours.
+  const STEPS = 20;
+  function envelope(phi, w, h) {
+    const raw = [];
+    for (let i = 0; i <= STEPS; i++) raw.push(boxOf(i / STEPS, phi));
+    return raw.map((_, i) => {
+      const b = [1e9, 1e9, -1e9, -1e9];
+      for (let j = Math.max(0, i - 1); j <= Math.min(STEPS, i + 1); j++) {
+        b[0] = Math.min(b[0], raw[j][0]); b[1] = Math.min(b[1], raw[j][1]);
+        b[2] = Math.max(b[2], raw[j][2]); b[3] = Math.max(b[3], raw[j][3]);
+      }
+      const pad = H0 * 0.9;
+      const x0 = b[0] - pad, y0 = b[1] - pad, x1 = b[2] + pad, y1 = b[3] + pad;
+      const k = Math.min(w / (x1 - x0), h / (y1 - y0));
+      return [k, (w - (x1 + x0) * k) / 2, (h + (y1 + y0) * k) / 2];
+    });
   }
 
   // ── directions ────────────────────────────────────────────────────────
@@ -97,7 +119,7 @@
   };
   let dir = 'left';
 
-  let flat = [1, 0, 0], shut = [1, 0, 0], W = 0, Hh = 0;
+  let fits = null, W = 0, Hh = 0;
 
   function measure() {
     const r = canvas.getBoundingClientRect();
@@ -111,33 +133,29 @@
     return true;
   }
   function refit() {
-    const phi = DIRS[dir].phi;
-    flat = fitFor(0, phi, W, Hh);
-    shut = fitFor(1, phi, W, Hh);
+    if (W && Hh) fits = envelope(DIRS[dir].phi, W, Hh);
   }
 
   function paint(curl) {
-    if (!W || !Hh) return;
+    if (!W || !Hh || !fits) return;
     const phi = DIRS[dir].phi;
-    const k = flat[0] + (shut[0] - flat[0]) * curl;
-    const ox = flat[1] + (shut[1] - flat[1]) * curl;
-    const oy = flat[2] + (shut[2] - flat[2]) * curl;
+    const f = Math.max(0, Math.min(1, curl)) * STEPS;
+    const i = Math.min(STEPS - 1, Math.floor(f)), u = f - i;
+    const a = fits[i], b = fits[i + 1];
+    const k = a[0] + (b[0] - a[0]) * u;
+    const ox = a[1] + (b[1] - a[1]) * u;
+    const oy = a[2] + (b[2] - a[2]) * u;
     const T = (p) => { const q = place(p, phi); return [ox + q[0] * k, oy - q[1] * k]; };
     const depth = (p) => place(p, phi)[2];
 
     ctx.clearRect(0, 0, W, Hh);
 
-    // the block the arm is bolted to
-    const [bx, by] = T([0, 0]);
+    // the block the arm is bolted to, flush against the first segment
     ctx.fillStyle = BASE;
-    const bw = 15 * k, bh = H0 * 1.25 * k;
-    if (ctx.roundRect) {
-      ctx.beginPath();
-      ctx.roundRect(bx - bw, by - bh / 2, bw, bh, 2.4 * k);
-      ctx.fill();
-    } else {
-      ctx.fillRect(bx - bw, by - bh / 2, bw, bh);
-    }
+    ctx.beginPath();
+    BLOCK.forEach((p, n) => { const q = T(p); n ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); });
+    ctx.closePath();
+    ctx.fill();
 
     // back to front, so the spiral overlaps itself the right way round
     const segs = arm(curl);
@@ -149,7 +167,6 @@
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
     const edgeW = Math.max(0.8, 0.9 * k);
-    const cordW = Math.max(1.4, 1.9 * k);
 
     for (const s of segs) {
       ctx.lineWidth = edgeW;
@@ -163,7 +180,8 @@
 
       // the string, threaded off-centre, drawn with its own segment so it
       // passes behind the coils it should pass behind
-      ctx.lineWidth = cordW;
+      // tapering with the segment, so it does not outgrow the tip
+      ctx.lineWidth = Math.max(1.1, Math.min(2.0 * k, 0.19 * s.depth * k));
       ctx.strokeStyle = TENDON_C;
       ctx.beginPath();
       s.cord.forEach((p, i) => { const q = T(p); i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); });
